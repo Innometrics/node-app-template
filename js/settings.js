@@ -19,7 +19,7 @@
             });
         },
         callbackSetSettings: function (helper, form, loader) {
-            helper.showLoader('Saving...');
+            loader.show('Saving...');
             helper.setProperties(form.getValue(), function (status) {
                 if (status) {
                     console.log('Settings were saved.');
