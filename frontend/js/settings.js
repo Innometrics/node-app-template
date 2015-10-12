@@ -8,23 +8,23 @@
         schemaPath: 'js/settings.schema.json',
         title: 'App settings stored in Innometrics Cloud'
     }, {
-        callbackGetSettings: function (helper, form) {
+        callbackGetSettings: function (helper, form, loader) {
             helper.getProperties(function (status, data) {
                 if (status) {
                     form.setValue(data);
                 } else {
                     console.log('Error: unable to get Settings from Profile Cloud');
                 }
-                helper.hideLoader();
+                loader.hide();
             });
         },
-        callbackSetSettings: function (helper, form) {
+        callbackSetSettings: function (helper, form, loader) {
             helper.showLoader('Saving...');
             helper.setProperties(form.getValue(), function (status) {
-                helper.hideLoader();
                 if (status) {
                     console.log('Settings were saved.');
                 }
+                loader.hide();
             });
         }
     });

@@ -35,13 +35,15 @@ function makeSettingsEditor(handlers, options, callbacks) {
             theme: 'bootstrap3'
         });
 
+        // Init loader
+        var loader = new Loader();
 
         // Init IframeHelper
         var inno = new IframeHelper();
 
-        inno.showLoader();
+        loader.show();
         inno.onReady(function () {
-            callbacks.callbackGetSettings(inno, editor);
+            callbacks.callbackGetSettings(inno, editor, loader);
         });
 
         // Listen submit button click event
@@ -55,7 +57,7 @@ function makeSettingsEditor(handlers, options, callbacks) {
                 });
                 console.log(errors.join('\n'));
             } else {
-                callbacks.callbackSetSettings(inno, editor);
+                callbacks.callbackSetSettings(inno, editor, loader);
             }
         });
     };
