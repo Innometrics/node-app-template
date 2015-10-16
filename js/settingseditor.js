@@ -1,3 +1,5 @@
+/* global Loader, IframeHelper, JSONEditor */
+
 function makeSettingsEditor(handlers, options, callbacks) {
     var $ = window.$;
 
@@ -35,15 +37,12 @@ function makeSettingsEditor(handlers, options, callbacks) {
             theme: 'bootstrap3'
         });
 
-        // Init loader
-        var loader = new Loader();
-
         // Init IframeHelper
         var inno = new IframeHelper();
 
-        loader.show();
+        Loader.show();
         inno.onReady(function () {
-            callbacks.callbackGetSettings(inno, editor, loader);
+            callbacks.callbackGetSettings(inno, editor);
         });
 
         // Listen submit button click event
@@ -57,7 +56,7 @@ function makeSettingsEditor(handlers, options, callbacks) {
                 });
                 console.log(errors.join('\n'));
             } else {
-                callbacks.callbackSetSettings(inno, editor, loader);
+                callbacks.callbackSetSettings(inno, editor);
             }
         });
     };
